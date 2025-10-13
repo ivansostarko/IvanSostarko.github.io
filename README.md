@@ -87,9 +87,9 @@ and builds a table with columns:
 
 ## 🖼️ Screenshot
 
-```
+
 ![Screenshot of GitHub Repositories Portfolio](assets/github-page/github_portfolio.png)
-```
+
 
 ---
 
