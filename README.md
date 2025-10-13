@@ -30,7 +30,7 @@ A clean and responsive **GitHub Pages** website that automatically lists all you
 The site fetches your public repositories from:
 
 ```
-https://api.github.com/users/ivansostarko/repos?per_page=100
+https://api.github.com/users/YOUR_USERNAME/repos?per_page=100
 ```
 
 and builds a table with columns:
@@ -87,9 +87,8 @@ and builds a table with columns:
 
 ## 🖼️ Screenshot
 
-*(Add a screenshot of your live site here)*  
 ```
-![Screenshot of GitHub Repositories Portfolio](screenshot.png)
+![Screenshot of GitHub Repositories Portfolio](assets/github-page/github_portfolio.png)
 ```
 
 ---
