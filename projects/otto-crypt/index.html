@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OTTO Crypt | E2E Li </title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="OTTO: one binary format for text, photos, and video across PHP, JS, Python, .NET, Java, Swift, Flutter." />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container row between center">
+      <div class="brand">OTTO Crypt</div>
+      <nav class="nav">
+        <a href="#download-sdks">Download SDK</a>
+        <a href="#demos">Demos</a>
+        <a href="#clients">Client Apps</a>
+        <a href="#why-otto">Why OTTO</a>
+        <a href="#compare">Compare</a>
+        <a href="#docs">Docs</a>
+      </nav>
+      <div class="cta">
+        <a class="btn outline" href="https://github.com/ivansostarko/otto-crypt">GitHub</a>
+        <a class="btn primary" href="#docs">Technical Docs</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container grid2 gap">
+        <div>
+          <h1>One binary format for text, photos, and video across PHP, JS, Python, .NET, Java, Swift, and Flutter.</h1>
+          <p class="muted">OTTO combines AES‑256‑GCM with an HKDF key schedule, Argon2id password hardening, optional X25519 end‑to‑end mode, and a robust chunked streaming layout.</p>
+          <div class="row gap wrap mtop">
+            <a class="btn primary" href="#download-sdks">Get SDKs</a>
+            <a class="btn ghost" href="#clients">Download apps</a>
+          </div>
+          <p class="note">Security note: OTTO’s construction is new; obtain an independent cryptographic review before production use.</p>
+        </div>
+        <div>
+          <div class="card code">
+<pre><code>HEADER  = [ magic:"OTTO1" | algo:0xA1 | kdf | flags | 0x00 | hlen | HVAR ]
+HVAR    = file_salt | (pw_salt + ops + mem) | (eph_pubkey)
+CHUNK i = [ clen(u32) | ciphertext | tag(16) ]
+
+enc_key   = HKDF(master, 32, info="OTTO-ENC-KEY",  salt=file_salt)
+nonce_key = HKDF(master, 32, info="OTTO-NONCE-KEY", salt=file_salt)
+nonce_i   = HKDF(nonce_key, 12, info="OTTO-CHUNK-NONCE" || counter64be)</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SDKS -->
+    <section id="download-sdks" class="section">
+      <div class="container">
+        <h2>Download SDK</h2>
+        <p class="muted">All SDKs share the exact same header and streaming format. Encrypt in one, decrypt in another.</p>
+        <div id="sdk-grid" class="grid3 gap"></div>
+      </div>
+    </section>
+
+    <!-- DEMOS -->
+    <section id="demos" class="section alt">
+      <div class="container">
+        <h2>Demo apps per SDK</h2>
+        <div id="demo-grid" class="grid3 gap"></div>
+      </div>
+    </section>
+
+    <!-- CLIENT APPS -->
+    <section id="clients" class="section">
+      <div class="container">
+        <h2>Download Client Apps</h2>
+        <div id="client-grid" class="grid2 gap"></div>
+      </div>
+    </section>
+
+    <!-- WHY OTTO -->
+    <section id="why-otto" class="section alt">
+      <div class="container grid2 gap">
+        <div>
+          <h2>Why OTTO Algorithm?</h2>
+          <ul class="bullets">
+            <li><strong>Cross‑language, one format.</strong> Identical header + streaming layout in PHP, JS, Python, .NET, Java/Android, Swift, and Flutter.</li>
+            <li><strong>Stream big media safely.</strong> Chunked AEAD with per‑chunk tags for video/audio; constant memory and resumable processing.</li>
+            <li><strong>Nonce misuse resistance.</strong> Deterministic HKDF‑SIV‑style nonces derived from a counter — no random nonces to manage.</li>
+            <li><strong>Password or E2E.</strong> Argon2id for passphrases or X25519 for end‑to‑end sessions; raw 32‑byte keys also supported.</li>
+            <li><strong>AAD‑bound metadata.</strong> The full header is AEAD Associated Data, tying algorithm/KDF params and (for E2E) the sender’s ephemeral key to the ciphertext.</li>
+          </ul>
+        </div>
+        <div class="card code">
+<pre><code>magic:"OTTO1" | algo_id:0xA1 | kdf_id | flags | 0x00 | header_len
+HVAR: file_salt | (pw_salt + opslimit + memlimitKiB) | (eph_pubkey)</code></pre>
+          <p class="note">Note: OTTO is a new composition of established primitives. Get an independent security review before production use.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section id="compare" class="section">
+      <div class="container">
+        <h2>Comparison</h2>
+        <div class="table-wrap">
+          <table id="compare-table">
+            <thead>
+              <tr>
+                <th>Scheme</th>
+                <th>AEAD</th>
+                <th>Keying</th>
+                <th>Streaming</th>
+                <th>Nonces</th>
+                <th>Interop</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCS -->
+    <section id="docs" class="section alt">
+      <div class="container">
+        <h2>Technical documentation</h2>
+        <p class="muted">Read the full specification, wire format, header fields, key schedule, threat model, and interoperability checklist in the OTTO repository.</p>
+        <div class="row gap wrap mtop" id="docs-links"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container row gap wrap center">
+      <span>MIT © OTTO Crypt</span>
+      <span class="sep">•</span>
+      <a href="https://github.com/ivansostarko/otto-crypt">Spec</a>
+      <span class="sep">•</span>
+      <a href="#why-otto">Security note</a>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
